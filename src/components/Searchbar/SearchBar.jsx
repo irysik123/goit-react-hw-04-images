@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import {
   SearchHeader,
   SearchForm,
@@ -9,49 +9,41 @@ import {
 import { AiOutlineSearch } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 
+export default function SearchBar({ onSubmit }) {
+  const[searchText, setSearchText] = useState('')
 
-export default class SearchBar extends Component {
-  state = {
-    searchText: '',
-  }
-
-  handleSubmit = event => {
+   const handleSubmit = event => {
     event.preventDefault();
-    this.props.onSubmit(this.state.searchText);
 
+    onSubmit(searchText);
   };
 
-  handleImageChange = (event) => {
-    this.setState({searchText: event.target.value})
+  const handleImageChange = (event) => {
+    setSearchText(event.target.value)
   }
 
-  render() {
-    const { searchText } = this.state;
-
-    return (
-      <div>
-        <SearchHeader>
-          <SearchForm onSubmit={this.handleSubmit}>
-            <SearchFormBtn type="submit">
-              <AiOutlineSearch style={{ stroke: 'grey' }} />
-              {/* <SearchLabel>
+  return (
+    <div>
+      <SearchHeader>
+        <SearchForm onSubmit={handleSubmit}>
+          <SearchFormBtn type="submit">
+            <AiOutlineSearch style={{ stroke: 'grey' }} />
+            {/* <SearchLabel>
                 
               </SearchLabel> */}
-            </SearchFormBtn>
-            <Input
-              type="text"
-              autoComplete="off"
-              autoFocus
-              placeholder="Search images and photos"
-              onChange={this.handleImageChange}
-              value={searchText}
-            />
-          </SearchForm>
-        </SearchHeader>
-        
-      </div>
-    );
-  }
+          </SearchFormBtn>
+          <Input
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            onChange={handleImageChange}
+            value={searchText}
+          />
+        </SearchForm>
+      </SearchHeader>
+    </div>
+  );
 }
 
 SearchBar.propTypes = {

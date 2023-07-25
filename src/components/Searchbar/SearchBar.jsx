@@ -10,17 +10,17 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 
 export default function SearchBar({ onSubmit }) {
-  const[searchText, setSearchText] = useState('')
+  const [searchText, setSearchText] = useState('');
 
-   const handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault();
 
     onSubmit(searchText);
   };
 
-  const handleImageChange = (event) => {
-    setSearchText(event.target.value)
-  }
+  const handleImageChange = event => {
+    setSearchText(event.target.value);
+  };
 
   return (
     <div>

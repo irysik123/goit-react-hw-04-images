@@ -24,7 +24,7 @@ export default function App() {
       )
         .then(res => res.json())
         .then(images => {
-          setImages((prevImages) => [...prevImages, ...images.hits]);
+          setImages(prevImages => [...prevImages, ...images.hits]);
           setIsLoading(false);
           setTotalHits(images.totalHits);
         })
@@ -44,7 +44,7 @@ export default function App() {
   };
 
   const handleSubmit = textToSearch => {
-    setImages([])
+    setImages([]);
     if (textToSearch.length < 3) {
       alert('Please enter minimum 3 symbols to search for Images');
     } else if (textToSearch === searchText) {
